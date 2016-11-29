@@ -5,23 +5,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-    crossorigin="anonymous">
 
-  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
-  <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDQ5dFon7mJvf-gQdrWZ5oJAFsvoboDsxU",
-    authDomain: "fir-demo-56b19.firebaseapp.com",
-    databaseURL: "https://fir-demo-56b19.firebaseio.com",
-    storageBucket: "fir-demo-56b19.appspot.com",
-    messagingSenderId: "156592969504"
-  };
-  firebase.initializeApp(config);
-</script>
   <style>
     .container {
       margin-top: 20px;
@@ -48,6 +33,7 @@
      box-shadow: 1px 1px 3px 1px lightgray;
 }
   </style>
+  <title>Read Firebase Data</title>
 </head>
 
 <body>
@@ -56,7 +42,10 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Firebase Demo</a>
       </div>
-
+ <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Read Templates</a></li>
+      <li><a href="writeFB.html">Write Templates</a></li>
+    </ul>
     </div>
   </nav>
   <div class="container">
@@ -78,8 +67,7 @@
             <option value="A" selected>All packages</option>
             <option value="T">Enabled packages</option>
             <option value="F">Disabled packages</option>
-            
-            </select>
+        </select>
 
         </div>
         <pre id="data3"></pre>
@@ -94,11 +82,13 @@
          <option value="none" selected>Select Customer</option>
             </select>
         </div>
-        <pre id="data4"></pre>
+        <pre id="data4">Select Customer</pre>
       </div>
     </div>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+  <script src="readFB.js"></script>
 
 </body>
 </html>
