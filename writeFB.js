@@ -98,8 +98,6 @@ Date.prototype.addDays = function(days) {
 btnAddPackageToCust.addEventListener("click", function () {
 
     var updatedPackageData = {};
-    
-
 
     firebase.database().ref('packages/' + selActivePackages.value).once('value').then(function (snapshot) {
         var selectedPackage = snapshot.val();
@@ -116,36 +114,21 @@ btnAddPackageToCust.addEventListener("click", function () {
             'speedUp':selectedPackage.speedUp
         };
 
-    // console.log(currentPackage);
-
-    //     firebase.database().ref('customers/' + selCustomerListNoPackages.value)
-    //                        .child("currentPackage")
-    //                        .update(currentPackage)
-    //                        .then(function(error)
-    //                 {
-    //         if(!error){
-    //         selCustomerListNoPackages.remove(selCustomerListNoPackages.selectedIndex);
-    //     }    
-    // });
-
      updatedPackageData['customers/' + selCustomerListNoPackages.value + '/currentPackage'] = currentPackage;
+     updatedPackageData['customerList/' + selCustomerListNoPackages.value + '/package'] = selectedPackage.package;
+     updatedPackageData['packages/' + selectedPackage.package + '/customers/' + selCustomerListNoPackages.value ] = {"activation":currentPackage.activation,"expiry":currentPackage.expiry};
+     
 
       firebase.database().ref().update(updatedPackageData, function (error) {
-           // document.getElementById('randomCustomer').innerHTML = 'Click on Generate Customer';
 
             if (error) {
                 console.log("Error updating data:", error);
             }
+            else {
+                console.log("success");
+                selCustomerListNoPackages.remove(selCustomerListNoPackages.selectedIndex);
+                selActivePackages.value = 'none';
+            }
         });
-    
-
-
     });
-
-
-
-
-
-    //  
-
 });
