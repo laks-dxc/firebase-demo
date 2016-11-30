@@ -22,8 +22,11 @@ firebase.database().ref(path2).once('value').then(function(snapshot) {
 snapshot.forEach(function(childSnapshot){
   
   var thisPackage = childSnapshot.val().currentPackage;
-  thisPackage.customer = childSnapshot.key;
-  packages.push(thisPackage);
+
+  if (!(thisPackage === undefined)) {
+    thisPackage.customer = childSnapshot.key;
+    packages.push(thisPackage);
+  }
 });
 
 document.getElementById('data2').innerHTML = JSON.stringify(packages, null, 2);
@@ -69,11 +72,10 @@ var path4 = '/customerList/';
 var customerList = [];
  var customerSelect = document.getElementById("customers");
 firebase.database().ref(path4).once('value').then(function(snapshot) {
-console.log(snapshot.val());
 snapshot.forEach(function(childSnapshot){
 
 var option = document.createElement("option");
-option.text = childSnapshot.val();
+option.text = childSnapshot.val().name;
 option.value = childSnapshot.key;
 customerSelect.add(option);
 

@@ -25,13 +25,23 @@ btnCust.addEventListener('click',function(){
     {
         var randomCustomerName = randomCustomer.name;
         var randomCustomerPhone = randomCustomer.phone;
-        var randomCustomerNameJson = {randomCustomerName};
-        console.log(randomCustomerNameJson);
+        var randomCustomerRegistered = randomCustomer.registered;
 
-        firebase.database().ref('/customers/').child(randomCustomerPhone).update(randomCustomer);
-        firebase.database().ref('/customerList/').child(randomCustomerPhone).update(randomCustomerName);
+        var customerListJson = {"name": randomCustomerName, "registered": randomCustomerRegistered};
+  
+        // firebase.database().ref('/customers/').child(randomCustomerPhone).update(randomCustomer);
+        // firebase.database().ref('/customerList/').child(randomCustomerPhone).update(randomCustomerPhone);
 
-        
+        var updatedUserData = {};
+
+        updatedUserData["customers/" + randomCustomerPhone] = randomCustomer;
+        updatedUserData["customerList/" + randomCustomerPhone] = customerListJson;
+
+       firebase.database().ref().update(updatedUserData, function (error) {
+            if (error) {
+                console.log("Error updating data:", error);
+            }
+        });
     }
     else
     {
