@@ -70,7 +70,8 @@ switch(this.value){
 
 var path4 = '/customerList/';
 var customerList = [];
- var customerSelect = document.getElementById("customers");
+
+var customerSelect = document.getElementById("customers");
 firebase.database().ref(path4).once('value').then(function(snapshot) {
 snapshot.forEach(function(childSnapshot){
 
