@@ -7,9 +7,17 @@
   <style>
 
 .glowing-border {
-    border: 2px solid blue;
-    border-radius: 7px;
+background: rgba(210,255,82,1);
+background: -moz-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
+background: -webkit-gradient(left top, right bottom, color-stop(23%, rgba(210,255,82,1)), color-stop(38%, rgba(186,247,76,1)), color-stop(57%, rgba(156,236,69,1)), color-stop(64%, rgba(145,232,66,1)));
+background: -webkit-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
+background: -o-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
+background: -ms-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
+background: linear-gradient(135deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1 );
 }
+
+
     .container {
       margin-top: 20px;
      box-shadow: 2px 2px 2px 2px lightgray;
@@ -64,11 +72,15 @@
       </div>
 
        <div class="col-md-4">
-           <div class="text-success"><select class="form-control" name="customerListNoPackages" id="customerListNoPackages">
+           <select class="form-control" name="customerListNoPackages" id="customerListNoPackages">
           <option value="none">Customers with no packages</option>
         </select>
-
-      </div>
+        <br>
+           <select class="form-control" name="selActivePackages" id="selActivePackages">
+          <option value="none">Active Packages</option>
+        </select>
+        <br>
+        <input type="button" id="btnAddPackageToCust" class="btn btn-default form-control" value="Assign Customer to Package">
 </div>
 </div>
  </div>

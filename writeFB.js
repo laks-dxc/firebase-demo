@@ -11,7 +11,20 @@ var btnRandomCust = document.getElementById("btnRandomCust");
 var btnCust = document.getElementById('btnAddCust');
 var randomCustomer;
 var selCustomerListNoPackages = document.getElementById("customerListNoPackages");
+var selActivePackages = document.getElementById('selActivePackages');
+var btnAddPackageToCust = document.getElementById('btnAddPackageToCust');
 var addClicked = false;
+
+firebase.database().ref('packages/').orderByChild('active').equalTo(true).once('value').then(function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+        var option = document.createElement("option");
+        option.text = childSnapshot.key;
+        option.value = childSnapshot.key;
+        selActivePackages.add(option);
+    });
+});
+
+
 
 firebase.database().ref('/customerList/').on('child_added', function (snapshot) {
 
@@ -19,7 +32,7 @@ firebase.database().ref('/customerList/').on('child_added', function (snapshot) 
         
         var option = document.createElement("option");
         option.text = snapshot.val().name;
-        option.value = snapshot.val().phone;
+        option.value = snapshot.key;
         selCustomerListNoPackages.add(option);
 
         if (addClicked) {
@@ -28,6 +41,7 @@ firebase.database().ref('/customerList/').on('child_added', function (snapshot) 
         }
     }
 });
+
 
 btnRandomCust.addEventListener('click', function () {
     var path = '/randomCustomers/' + Math.floor(Math.random() * 10901);
@@ -69,7 +83,69 @@ btnCust.addEventListener('click', function () {
 });
 
 
-selCustomerListNoPackages.addEventListener("change", function () {
+selCustomerListNoPackages.addEventListener("change",function(){
+    console.log(this.value);
+});
 
+
+Date.prototype.addDays = function(days) {
+    this.setDate(this.getDate() + parseInt(days));
+    return this;
+};
+
+
+
+btnAddPackageToCust.addEventListener("click", function () {
+
+    var updatedPackageData = {};
+    
+
+
+    firebase.database().ref('packages/' + selActivePackages.value).once('value').then(function (snapshot) {
+        var selectedPackage = snapshot.val();
+        var currentDate = new Date();
+        var expiryDate = (new Date()).addDays(selectedPackage.validity);
+
+        var currentPackage = {
+            "activation": currentDate.toISOString().slice(0, 10),
+            "dataConsumed": 0,
+            "dataTotal": selectedPackage.dataTotal,
+            "expiry": expiryDate.toISOString().slice(0,10),
+            'packageName':selectedPackage.package,
+            'speedDown':selectedPackage.speedDown,
+            'speedUp':selectedPackage.speedUp
+        };
+
+    // console.log(currentPackage);
+
+    //     firebase.database().ref('customers/' + selCustomerListNoPackages.value)
+    //                        .child("currentPackage")
+    //                        .update(currentPackage)
+    //                        .then(function(error)
+    //                 {
+    //         if(!error){
+    //         selCustomerListNoPackages.remove(selCustomerListNoPackages.selectedIndex);
+    //     }    
+    // });
+
+     updatedPackageData['customers/' + selCustomerListNoPackages.value + '/currentPackage'] = currentPackage;
+
+      firebase.database().ref().update(updatedPackageData, function (error) {
+           // document.getElementById('randomCustomer').innerHTML = 'Click on Generate Customer';
+
+            if (error) {
+                console.log("Error updating data:", error);
+            }
+        });
+    
+
+
+    });
+
+
+
+
+
+    //  
 
 });

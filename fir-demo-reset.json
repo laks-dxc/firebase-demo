@@ -50,9 +50,10 @@
   "packages" : {
     "10Mb-50GB" : {
       "active" : false,
-      "data-limit" : "50GB",
+      "dataTotal" : "50GB",
       "package" : "10Mb-50GB",
-      "speed" : "10Mbps",
+      "speedDown" : "10Mbps",
+      "speedUp" : "10Mbps",
       "validity" : "30",
       "validityUnit" : "D"
     },
@@ -68,9 +69,10 @@
           "expiry" : "2016-12-22"
         }
       },
-      "data-limit" : "20GB",
+      "dataTotal" : "20GB",
       "package" : "5Mb-20GB",
-      "speed" : "5Mbps",
+      "speedDown" : "5Mbps",
+      "speedUp" : "5Mbps",
       "validity" : "30",
       "validityUnit" : "D"
     }
