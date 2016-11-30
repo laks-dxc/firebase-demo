@@ -16,14 +16,13 @@ var addClicked = false;
 firebase.database().ref('/customerList/').on('child_added', function (snapshot) {
 
     if ((snapshot.val().package === undefined)) {
-        console.log(addClicked);
+        
         var option = document.createElement("option");
         option.text = snapshot.val().name;
         option.value = snapshot.val().phone;
         selCustomerListNoPackages.add(option);
 
         if (addClicked) {
-
             selCustomerListNoPackages.className += " glowing-border";
             setTimeout(function () { selCustomerListNoPackages.classList.toggle('glowing-border'); }, 2000);
         }
