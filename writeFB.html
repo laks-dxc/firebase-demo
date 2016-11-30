@@ -33,7 +33,7 @@
      box-shadow: 1px 1px 3px 1px lightgray;
 }
   </style>
-  <title>Read Firebase Data</title>
+  <title>Write to Firebase DB</title>
 </head>
 
 <body>
@@ -46,8 +46,23 @@
       <li><a href="readFb.html">Read Templates</a></li>
       <li class="active"><a href="#">Write Templates</a></li>
     </ul>
+      <ul class="nav navbar-nav navbar-right">
+                <li style="margin-top:5px"><h4>Laurel Solutions</h4></li>
+            </ul>
     </div>
   </nav>
+
+  <div class="container">
+
+<div class="row">
+      <div class="col-md-4">
+          <input type="button" class="btn btn-default form-control" id="btnRandomCust" value="Generate Customer">
+          <pre id="randomCustomer"></pre>
+          <input type="button" class="btn btn-default form-control "  id="btnAddCust" value="Add Customer">
+          
+      </div>
+</div>
+  </div>
 
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
   <script src="writeFB.js"></script>

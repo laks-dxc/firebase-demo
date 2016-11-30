@@ -50,15 +50,14 @@ switch(this.value){
 
   case 'T':
 
-  firebase.database().ref(path3).orderByChild('active').equalTo(true).once('value').then(function(snapshot) {
+      firebase.database().ref(path3).orderByChild('active').equalTo(true).once('value').then(function(snapshot) {
       document.getElementById('data3').innerHTML = JSON.stringify(getPackages(snapshot), null, 2);
   });
   break;
 
  case 'F':
   firebase.database().ref(path3).orderByChild('active').equalTo(false).once('value').then(function(snapshot) {
-        
-document.getElementById('data3').innerHTML = JSON.stringify(getPackages(snapshot), null, 2);
+  document.getElementById('data3').innerHTML = JSON.stringify(getPackages(snapshot), null, 2);
       
   });
   break;
