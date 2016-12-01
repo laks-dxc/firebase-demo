@@ -10,9 +10,8 @@
   <style>
     .container {
       margin-top: 20px;
-     box-shadow: 2px 2px 2px 2px lightgray;
-     padding:30px;
-      
+      box-shadow: 2px 2px 2px 2px lightgray;
+      padding: 30px;
     }
     
     .divStyle {
@@ -24,14 +23,13 @@
     pre {
       box-shadow: 1px 1px 1px 1px #ccc;
     }
-
-
+    
     hr {
-    border: none;
-    height: 1px;
-    background-color: #333;
-     box-shadow: 1px 1px 3px 1px lightgray;
-}
+      border: none;
+      height: 1px;
+      background-color: #333;
+      box-shadow: 1px 1px 3px 1px lightgray;
+    }
   </style>
   <title>Read Firebase Data</title>
 </head>
@@ -42,29 +40,32 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Firebase Demo</a>
       </div>
- <ul class="nav navbar-nav">
-      <li class="active"><a href="readFb.html">Read Templates</a></li>
-      <li><a href="writeFB.html">Write Templates</a></li>
-    </ul>
-          <ul class="nav navbar-nav navbar-right">
-                <li style="margin-top:5px"><h4>Laurel Solutions</h4></li>
-            </ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="readFb.html">Read Templates</a></li>
+        <li><a href="writeFB.html">Write Templates</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li style="margin-top:5px">
+          <h4>Laurel Solutions</h4>
+        </li>
+      </ul>
     </div>
   </nav>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="text-success">Customers with
           <mark>5Mb-20GB</mark> Package</div>
         <pre id="data1"></pre>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
 
-        <div class="text-success"><h5>Customer-Package List</h5><small>Shows only customers having packages</small></div>
-       <pre id="data2"></pre>
+        <div class="text-success">
+          <h5>Customer-Package List</h5><small>Shows only customers having packages</small></div>
+        <pre id="data2"></pre>
 
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
 
         <div class="text-success"><select class="form-control" name="activeItems" id="activeItems">
             <option value="A" selected>All packages</option>
@@ -76,17 +77,18 @@
         <pre id="data3"></pre>
 
       </div>
-    </div>
-<hr>
-    <div class="row">
-
-<div class="col-md-6">
-          <div class="text-success"><select class="form-control" name="customers" id="customers">
+       <div class="col-md-3">
+        <div class="text-success"><select class="form-control" name="customers" id="customers">
          <option value="none" selected>Select Customer</option>
             </select>
         </div>
         <pre id="data4">Select Customer</pre>
       </div>
+    </div>
+    <hr>
+    <div class="row">
+
+     
     </div>
   </div>
 
@@ -94,4 +96,5 @@
   <script src="readFB.js"></script>
 
 </body>
+
 </html>

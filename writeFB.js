@@ -26,21 +26,6 @@ firebase.database().ref('packages/').orderByChild('active').equalTo(true).once('
 
 
 
-firebase.database().ref('/customerList/').on('child_added', function (snapshot) {
-
-    if ((snapshot.val().package === undefined)) {
-        
-        var option = document.createElement("option");
-        option.text = snapshot.val().name;
-        option.value = snapshot.key;
-        selCustomerListNoPackages.add(option);
-
-        if (addClicked) {
-            selCustomerListNoPackages.className += " glowing-border";
-            setTimeout(function () { selCustomerListNoPackages.classList.toggle('glowing-border'); }, 2000);
-        }
-    }
-});
 
 
 btnRandomCust.addEventListener('click', function () {
@@ -62,16 +47,17 @@ btnCust.addEventListener('click', function () {
 
         // firebase.database().ref('/customers/').child(randomCustomerPhone).update(randomCustomer);
         // firebase.database().ref('/customerList/').child(randomCustomerPhone).update(customerListJson);
+       
 
         var updatedUserData = {};
 
         updatedUserData["customers/" + randomCustomerPhone] = randomCustomer;
         updatedUserData["customerList/" + randomCustomerPhone] = customerListJson;
-        addClicked = true;
+         addClicked = true;
 
         firebase.database().ref().update(updatedUserData, function (error) {
             document.getElementById('randomCustomer').innerHTML = 'Click on Generate Customer';
-
+           
             if (error) {
                 console.log("Error updating data:", error);
             }
@@ -83,12 +69,29 @@ btnCust.addEventListener('click', function () {
 });
 
 
-selCustomerListNoPackages.addEventListener("change",function(){
+firebase.database().ref('/customerList/').on('child_added', function (snapshot) {
+
+    if ((snapshot.val().package === undefined)) {
+
+        var option = document.createElement("option");
+        option.text = snapshot.val().name;
+        option.value = snapshot.key;
+        selCustomerListNoPackages.add(option);
+
+        if (addClicked) {
+            selCustomerListNoPackages.className += " glowing-border";
+            setTimeout(function () { selCustomerListNoPackages.classList.toggle('glowing-border'); }, 2000);
+        }
+    }
+});
+
+
+selCustomerListNoPackages.addEventListener("change", function () {
     console.log(this.value);
 });
 
 
-Date.prototype.addDays = function(days) {
+Date.prototype.addDays = function (days) {
     this.setDate(this.getDate() + parseInt(days));
     return this;
 };
@@ -108,24 +111,23 @@ btnAddPackageToCust.addEventListener("click", function () {
             "activation": currentDate.toISOString().slice(0, 10),
             "dataConsumed": 0,
             "dataTotal": selectedPackage.dataTotal,
-            "expiry": expiryDate.toISOString().slice(0,10),
-            'packageName':selectedPackage.package,
-            'speedDown':selectedPackage.speedDown,
-            'speedUp':selectedPackage.speedUp
+            "expiry": expiryDate.toISOString().slice(0, 10),
+            'packageName': selectedPackage.package,
+            'speedDown': selectedPackage.speedDown,
+            'speedUp': selectedPackage.speedUp
         };
 
-     updatedPackageData['customers/' + selCustomerListNoPackages.value + '/currentPackage'] = currentPackage;
-     updatedPackageData['customerList/' + selCustomerListNoPackages.value + '/package'] = selectedPackage.package;
-     updatedPackageData['packages/' + selectedPackage.package + '/customers/' + selCustomerListNoPackages.value ] = {"activation":currentPackage.activation,"expiry":currentPackage.expiry};
-     
+        updatedPackageData['customers/' + selCustomerListNoPackages.value + '/currentPackage'] = currentPackage;
+        updatedPackageData['customerList/' + selCustomerListNoPackages.value + '/package'] = selectedPackage.package;
+        updatedPackageData['packages/' + selectedPackage.package + '/customers/' + selCustomerListNoPackages.value] = { "activation": currentPackage.activation, "expiry": currentPackage.expiry };
 
-      firebase.database().ref().update(updatedPackageData, function (error) {
+        firebase.database().ref().update(updatedPackageData, function (error) {
 
             if (error) {
                 console.log("Error updating data:", error);
             }
             else {
-                console.log("success");
+           
                 selCustomerListNoPackages.remove(selCustomerListNoPackages.selectedIndex);
                 selActivePackages.value = 'none';
             }

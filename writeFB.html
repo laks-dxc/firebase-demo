@@ -5,24 +5,21 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
   <style>
-
-.glowing-border {
-background: rgba(210,255,82,1);
-background: -moz-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
-background: -webkit-gradient(left top, right bottom, color-stop(23%, rgba(210,255,82,1)), color-stop(38%, rgba(186,247,76,1)), color-stop(57%, rgba(156,236,69,1)), color-stop(64%, rgba(145,232,66,1)));
-background: -webkit-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
-background: -o-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
-background: -ms-linear-gradient(-45deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
-background: linear-gradient(135deg, rgba(210,255,82,1) 23%, rgba(186,247,76,1) 38%, rgba(156,236,69,1) 57%, rgba(145,232,66,1) 64%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1 );
-}
-
-
+    .glowing-border {
+      background: rgba(210, 255, 82, 1);
+      background: -moz-linear-gradient(-45deg, rgba(210, 255, 82, 1) 23%, rgba(186, 247, 76, 1) 38%, rgba(156, 236, 69, 1) 57%, rgba(145, 232, 66, 1) 64%);
+      background: -webkit-gradient(left top, right bottom, color-stop(23%, rgba(210, 255, 82, 1)), color-stop(38%, rgba(186, 247, 76, 1)), color-stop(57%, rgba(156, 236, 69, 1)), color-stop(64%, rgba(145, 232, 66, 1)));
+      background: -webkit-linear-gradient(-45deg, rgba(210, 255, 82, 1) 23%, rgba(186, 247, 76, 1) 38%, rgba(156, 236, 69, 1) 57%, rgba(145, 232, 66, 1) 64%);
+      background: -o-linear-gradient(-45deg, rgba(210, 255, 82, 1) 23%, rgba(186, 247, 76, 1) 38%, rgba(156, 236, 69, 1) 57%, rgba(145, 232, 66, 1) 64%);
+      background: -ms-linear-gradient(-45deg, rgba(210, 255, 82, 1) 23%, rgba(186, 247, 76, 1) 38%, rgba(156, 236, 69, 1) 57%, rgba(145, 232, 66, 1) 64%);
+      background: linear-gradient(135deg, rgba(210, 255, 82, 1) 23%, rgba(186, 247, 76, 1) 38%, rgba(156, 236, 69, 1) 57%, rgba(145, 232, 66, 1) 64%);
+      filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1);
+    }
+    
     .container {
       margin-top: 20px;
-     box-shadow: 2px 2px 2px 2px lightgray;
-     padding:30px;
-      
+      box-shadow: 2px 2px 2px 2px lightgray;
+      padding: 30px;
     }
     
     .divStyle {
@@ -34,14 +31,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', end
     pre {
       box-shadow: 1px 1px 1px 1px #ccc;
     }
-
-
+    
     hr {
-    border: none;
-    height: 1px;
-    background-color: #333;
-     box-shadow: 1px 1px 3px 1px lightgray;
-}
+      border: none;
+      height: 1px;
+      background-color: #333;
+      box-shadow: 1px 1px 3px 1px lightgray;
+    }
   </style>
   <title>Write to Firebase DB</title>
 </head>
@@ -52,42 +48,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', end
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Firebase Demo</a>
       </div>
- <ul class="nav navbar-nav">
-      <li><a href="readFb.html">Read Templates</a></li>
-      <li class="active"><a href="writeFb.html">Write Templates</a></li>
-    </ul>
+      <ul class="nav navbar-nav">
+        <li><a href="readFb.html">Read Templates</a></li>
+        <li class="active"><a href="writeFb.html">Write Templates</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
-                <li style="margin-top:5px"><h4>Laurel Solutions</h4></li>
-            </ul>
+        <li style="margin-top:5px">
+          <h4>Laurel Solutions</h4>
+        </li>
+      </ul>
     </div>
   </nav>
 
   <div class="container">
 
-<div class="row">
+    <div class="row">
       <div class="col-md-4">
-          <input type="button" class="btn btn-default form-control" id="btnRandomCust" value="Generate Customer">
-          <pre id="randomCustomer">Click on Generate Customer</pre>
-          <input type="button" class="btn btn-default form-control "  id="btnAddCust" value="Add Customer">
+        <input type="button" class="btn btn-default form-control" id="btnRandomCust" value="Generate Customer">
+        <pre id="randomCustomer">Click on Generate Customer</pre>
+        <input type="button" class="btn btn-default form-control " id="btnAddCust" value="Add Customer">
       </div>
 
-       <div class="col-md-4">
-           <select class="form-control" name="customerListNoPackages" id="customerListNoPackages">
+      <div class="col-md-4">
+        <select class="form-control" name="customerListNoPackages" id="customerListNoPackages">
           <option value="none">Customers with no packages</option>
         </select>
         <br>
-           <select class="form-control" name="selActivePackages" id="selActivePackages">
+        <select class="form-control" name="selActivePackages" id="selActivePackages">
           <option value="none">Active Packages</option>
         </select>
         <br>
         <input type="button" id="btnAddPackageToCust" class="btn btn-default form-control" value="Assign Customer to Package">
-</div>
-</div>
- </div>
+      </div>
+    </div>
+  </div>
 
- 
-    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
   <script src="writeFB.js"></script>
 
 </body>
+
 </html>
